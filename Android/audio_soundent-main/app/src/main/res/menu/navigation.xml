@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="相機"
+        android:id="@+id/nav1"
+        android:icon="@drawable/ic_camera_alt_black_24dp"
+
+        />
+    <item android:title="下載"
+        android:icon="@drawable/ic_file_download_black_24dp"
+        android:id="@+id/nav2"
+        />
+    <item android:title="音樂"
+        android:id="@+id/nav3"
+        android:icon="@drawable/ic_audiotrack_black_24dp"
+        />
+    <item android:title="設定"
+        android:id="@+id/nav4"
+        android:icon="@drawable/ic_settings_black_24dp"
+        />
+</menu>

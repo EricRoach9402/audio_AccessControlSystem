@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Audio_SoundNet</string>
+    <string name="app_name2">toInternet</string>
+    <string-array name="selection_items">
+        <item>J301</item>
+        <item>J302</item>
+        <item>J303</item>
+        <item>J304</item>
+    </string-array>
+</resources>

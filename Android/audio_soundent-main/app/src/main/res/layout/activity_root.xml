@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ROOT.ROOT">
+
+    <TextView
+        android:id="@+id/ViewString"
+        android:layout_width="255dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="51dp"
+        android:text="解調字串"
+        app:layout_constraintBottom_toTopOf="@+id/CompleteTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/CompleteTime"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="51dp"
+        android:text="完整時間"
+        app:layout_constraintBottom_toTopOf="@+id/SyncToEndTime"
+        app:layout_constraintEnd_toEndOf="@+id/SyncToEndTime"
+        app:layout_constraintStart_toStartOf="@+id/ViewString"
+        app:layout_constraintTop_toBottomOf="@+id/ViewString" />
+
+    <TextView
+        android:id="@+id/SyncToEndTime"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="189dp"
+        android:text="SyncToEnd時間"
+        app:layout_constraintBottom_toTopOf="@+id/LoopBt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CompleteTime" />
+
+    <Button
+        android:id="@+id/OnceBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:text="單次播放 "
+        app:layout_constraintBaseline_toBaselineOf="@+id/LoopBt"
+        app:layout_constraintEnd_toStartOf="@+id/LoopBt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/LoopBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="137dp"
+        android:text="循環播放"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/OnceBt"
+        app:layout_constraintTop_toBottomOf="@+id/SyncToEndTime" />
+
+    <Button
+        android:id="@+id/Clear"
+        android:layout_width="261dp"
+        android:layout_height="42dp"
+        android:text="清除"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SyncToEndTime"
+        app:layout_constraintVertical_bias="0.156" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

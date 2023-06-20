@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".faceID_Register.Login">
+
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#C4E1FF"
+        app:snowflakeAlphaMax="160"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAngleMax="5"
+        app:snowflakeImage="@drawable/snowflake"
+        app:snowflakeSizeMax="32dp"
+        app:snowflakeSizeMin="8dp"
+        app:snowflakeSpeedMax="12"
+        app:snowflakeSpeedMin="4"
+        app:snowflakesAlreadyFalling="false"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesNum="250"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/Dolphin"
+        android:layout_width="222dp"
+        android:layout_height="296dp"
+        app:srcCompat="@drawable/dolphin"
+        tools:layout_editor_absoluteX="378dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/DolphinMaster"
+        android:layout_width="311dp"
+        android:layout_height="105dp"
+
+        app:srcCompat="@drawable/dm"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="108dp" />
+
+    <ImageView
+        android:id="@+id/Soundent"
+        android:layout_width="262dp"
+        android:layout_height="43dp"
+        app:srcCompat="@drawable/soundnet"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <com.royrodriguez.transitionbutton.TransitionButton
+        android:text="longin"
+        android:layout_width="388dp"
+        android:layout_height="60dp"
+        android:textColor="#000000"
+        app:defaultColor="#FFF8D7"
+        app:loaderColor="#FFBB77"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/frame2"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/password"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/rectangle" />
+
+    <com.royrodriguez.transitionbutton.TransitionButton
+        android:text="register"
+        android:layout_width="388dp"
+        android:layout_height="60dp"
+        android:textColor="#000000"
+        app:defaultColor="#FFF8D7"
+        app:loaderColor="#FFBB77"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/frame1"
+        app:layout_constraintBottom_toBottomOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="@+id/frame2"
+        app:layout_constraintStart_toStartOf="@+id/frame2"
+        app:layout_constraintTop_toTopOf="@+id/username"
+        app:srcCompat="@drawable/rectangle" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="291dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:hint="userID"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="301dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame1"
+        app:layout_constraintVertical_bias="0.096" />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="Dolphin,DolphinMaster,Soundent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="Dolphin,DolphinMaster,Soundent" />
+
+    <Button
+        android:id="@+id/google"
+        android:layout_width="60dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/google"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.705" />
+
+    <Button
+        android:id="@+id/facebook"
+        android:layout_width="68dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/facebook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/google"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.702" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
