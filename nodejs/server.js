@@ -6,7 +6,7 @@ const events = require('events');
 const mysql = require('mysql');
 
 const app = express();
-const server = app.listen(3000, () => console.log("\n系統啟動完成，注意連接端口為：3000\n"));
+const server = app.listen(3000, () => console.log("\n系统启动完成，注意连接端口为：3000\n"));
 const wss = new SocketServer({ server });
 const em = new events.EventEmitter();
 const con = mysql.createConnection({
@@ -73,15 +73,15 @@ app.post('/send', async function (req, res) {
       MusicID = numberToLetter();
       const obj = { "door_number": door_number, "music": MusicID + ".mp3", "target": "N" };
       const str = JSON.stringify(obj);
-      console.log("選擇門禁為：" + door_number + "\n");
-      console.log("音樂開始播放" + MusicID + "\n");
+      console.log("选择门禁为：" + door_number + "\n");
+      console.log("音乐开始播放" + MusicID + "\n");
       em.emit('FirstEvent', str);
       res.json({ 'message': '登入成功' });
     } else if (jsonData["doorpassword"] !== undefined) {
       const getpassword = jsonData["doorpassword"];
       if (MusicID === getpassword) {
-        console.log("驗證正確\n");
-        console.log("開啟門禁\n");
+        console.log("验证正确\n");
+        console.log("开启门禁\n");
         const obj = { "door_number": door_number, "music": "stop", "target": "door" };
         const str = JSON.stringify(obj);
         em.emit('FirstEvent', str);
@@ -97,8 +97,8 @@ app.post('/send', async function (req, res) {
         });
       } else {
         time_out++;
-        console.log("驗證錯誤，收到的驗證碼為：" + getpassword + "\n" + time_out);
-        console.log("請重新嘗試" + "\n");
+        console.log("验证错误，收到的验证码为：" + getpassword + "\n" + time_out);
+        console.log("请重新尝试" + "\n");
         MusicID = numberToLetter();
         const obj = { "door_number": door_number, "music": MusicID + ".mp3", "target": "N" };
         const str = JSON.stringify(obj);
@@ -106,22 +106,22 @@ app.post('/send', async function (req, res) {
         if (time_out >= 3) {
           time_out = 0;
           MusicID = null;
-          console.log("已達錯誤上限，請重新登錄\n");
+          console.log("已达错误上限，请重新登录\n");
           return;
         }
 
         await sleep(1000); // 等待1秒
-        console.log("音樂重新播放" + MusicID + "\n");
+        console.log("音乐重新播放" + MusicID + "\n");
         em.emit('FirstEvent', str);
         res.json({ 'message': 'ERROR' });
       }
     } else {
-      console.log("發生錯誤，請重新登錄" + "\n");
-      res.json({ 'message': '請重新登錄' });
+      console.log("发生错误，请重新登录" + "\n");
+      res.json({ 'message': '请重新登录' });
     }
   } catch (error) {
-    console.log("發生錯誤，請重新登錄" + "\n");
-    res.json({ 'message': '請重新登錄' });
+    console.log("发生错误，请重新登录" + "\n");
+    res.json({ 'message': '请重新登录' });
   }
 });
 
