@@ -27,7 +27,7 @@ const con = mysql.createConnection({
 //連線資料庫
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected to database");
+  console.log("Connected to database\n");
 });
 
 //創建字母給予音樂編號
@@ -50,18 +50,6 @@ for (let i = 0; i < 4; i++) {
   }
 }
 
-//舊版本 AA - AZ
-// const alphabet = Array.from({length: 26}, (_, i) => String.fromCharCode(65 + i));
-// const codes = {};
-// let MusicID = null;
-// let code = 0;
-// for (let i = 0; i < alphabet.length; i++) {
-//   for (let j = 0; j < alphabet.length; j++) {
-//     const key = alphabet[i] + alphabet[j];
-//     codes[code++] = key;
-//   }
-// }
-
 //音樂匹配函數
 function numberToLetter() {
   const byte = crypto.randomBytes(1);
@@ -69,7 +57,9 @@ function numberToLetter() {
   return codes[randomInt];
 }
 //將用戶設為全域變數
-let account;
+let account = "尚未登入";
+let door_number = "尚未選擇";
+
 // 設置靜態資源目錄
 app.use(express.static(__dirname));
 // 解析Content-Type為application/json的請求
@@ -78,10 +68,21 @@ app.use(bodyParser.json());
 app.post('/send', function (req, res) {
   //console.log(req.body);
   const jsonData = req.body;
-  //let door_number;
-  if(MusicID === null){
+  
+  if (account != jsonData["Account"]){
+    //console.log("Account:" + account)
+    MusicID = null;
+    time_out = 0;
     account = jsonData["Account"];
+  }
+  if (door_number != jsonData["post_door_number"]){
+    //console.log("Door_number:" + door_number)
+    MusicID = null;
+    time_out = 0;
     door_number = jsonData["post_door_number"]
+  }
+
+  if(MusicID === null){
     console.log(account + "登入成功"+"\n");
     //會員登入隨機選曲
     MusicID = numberToLetter();
@@ -95,8 +96,8 @@ app.post('/send', function (req, res) {
   else if(jsonData["doorpassword"] !== null){
     const getpassword = jsonData["doorpassword"];
     if (MusicID === getpassword){
-      console.log("驗證正確");
-      console.log("開啟門禁");
+      console.log("驗證正確\n");
+      console.log("開啟門禁\n");
       const obj = { "door_number":door_number,"music": "stop", "target": "door" };
       const str = JSON.stringify(obj);
       em.emit('FirstEvent', str);
@@ -106,10 +107,9 @@ app.post('/send', function (req, res) {
       let datetime = new Date();
       let formatted_datetime = datetime.getFullYear() + "-" + (datetime.getMonth() + 1) + "-" + datetime.getDate() + " " + datetime.getHours() + ":" + datetime.getMinutes() + ":" + datetime.getSeconds();
       let sql = `INSERT INTO logintime (account,door, time) VALUES ('${account}','${door_number}', '${formatted_datetime}')`;
-    
       con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("1 record inserted");
+        //console.log("1 record inserted");
       });
     }
     else {
@@ -122,7 +122,7 @@ app.post('/send', function (req, res) {
       if (time_out >= 3){
         time_out = 0;
         MusicID = null;
-        console.log("結束" + "\n");
+        console.log("已達錯誤上限請重新登入\n");
         return;
       }
       //console.log("等待1秒...");
@@ -168,7 +168,7 @@ wss.on('connection', ws => {
   });
 // 監聽事件發射器發射FirstEvent事件
   em.on('FirstEvent', function (data) {
-    console.log(data);
+    //console.log(data);
     // 向WebSocket客戶端發送消息
     ws.send(data);
   });
